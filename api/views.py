@@ -20,7 +20,8 @@ class PictureViewset(viewsets.ModelViewSet):
         img = img.quantize(colors=3, kmeans=2).convert('RGB')
         w, h = img.size
         dom_colors = sorted(img.getcolors(2 ** 24), reverse=True)[:1]
-        hex_dom = rgb2hex(0, 128, 64)
+        tmp = dom_colors[0][1]
+        hex_dom = rgb2hex(tmp[0], tmp[1], tmp[2])
 
         serializer.save(
             width=w,
